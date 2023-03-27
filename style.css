@@ -1,0 +1,22 @@
+/* DEFINITIONS */
+
+:root {
+    --blue: #1e2439;
+    --green: #528123;
+    --white: #e8e8e8;
+}
+
+/* COMMONS */
+
+body {
+    background-color: var(--blue);
+    color: var(--white);
+    font-family: 'Roboto Slab', serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
