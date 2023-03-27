@@ -6,6 +6,8 @@ The Odin Project - JS Foundation Final Project
 
 WORK IN PROGRESS: VIEW [HERE](https://hello-damiro.github.io/calculator)
 
+**Day 1:** Prepared environment and initial files. Design and conceptualize calculator on figma.
+
 </br>
 
 ## Project Instructions

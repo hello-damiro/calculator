@@ -1,15 +1,19 @@
 /* DEFINITIONS */
 
 :root {
-    --blue: #1e2439;
-    --green: #528123;
-    --white: #e8e8e8;
+    --bg: #1e2439;
+    --blue: #5baab2;
+    --red: #ff624b;
+    --orange: #ffa34e;
+    --brown: #41342a;
+    --green: #10893a;
+    --white: #f9e1b8;
 }
 
 /* COMMONS */
 
 body {
-    background-color: var(--blue);
+    background-color: var(--bg);
     color: var(--white);
     font-family: 'Roboto Slab', serif;
     text-transform: uppercase;
