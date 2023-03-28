@@ -107,13 +107,15 @@ h1 {
     text-align: right;
     display: block;
     height: 25px;
+    white-space: nowrap;
 }
 
 #lcd h3 {
     margin: 0;
     padding: 0;
-    font-size: 48px;
+    font-size: 46px;
     text-align: right;
+    white-space: nowrap;
 }
 
 #keypad {
@@ -264,6 +266,6 @@ footer h4 {
 }
 
 footer img {
-    margin-left: 4px;
+    margin-left: 6px;
     margin-right: 8px;
 }
