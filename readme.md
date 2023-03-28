@@ -8,6 +8,16 @@ WORK IN PROGRESS: VIEW [HERE](https://hello-damiro.github.io/calculator)
 
 **Day 1:** Prepared environment and initial files. Design and conceptualize calculator on figma.
 
+**Day 2:** Struggled with key press effect with CSS grid. Started with JS and designed pseudo code.
+
+</br>
+
+## Pseudo Code
+
+1. Capture key presses and put it on array `pressedArray`
+2. Process `pressedArray` and reiterate through array and combine integers and seperate it with the operands in between integers
+3. When user press `=`, calculate processed array by applying MDAS
+
 </br>
 
 ## Project Instructions
