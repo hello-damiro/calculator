@@ -14,23 +14,35 @@ getKeyPressed();
 let lineOneText = document.querySelector('#lcd > h2');
 let lineTwoText = document.querySelector('#lcd > h3');
 
+function roundOff(value, round) {
+    return parseInt(value * 10 ** (round + 1)) - parseInt(value * 10 ** round) * 10 > 4
+        ? parseFloat(parseInt((value + parseFloat(1 / 10 ** round)) * 10 ** round)) / 10 ** round
+        : parseFloat(parseInt(value * 10 ** round)) / 10 ** round;
+}
+
 export function finalizeCalculation() {
     if (pressedKeysArray.length == 0) {
         equationArray.pop();
     } else {
-        // eqn complete
-        const pressedKeysString = pressedKeysArray.join('');
-        equationArray.push(pressedKeysString);
+        if (equationArray.length >= 2) {
+            // eqn complete
+            const pressedKeysString = pressedKeysArray.join('');
+            equationArray.push(pressedKeysString);
+
+            const result = performCalculation(equationArray[2]);
+            updateLineOne();
+            //lineOneText.textContent = equationArray.join(''); // eqn
+            lineTwoText.textContent = result; // result TODO: limit to character display
+            lineTwoText.textContent = roundOff(result, 12); // result TODO: limit to character display
+
+            equationArray = [];
+            pressedKeysArray = [];
+            pressedKeysArray.push(result);
+        } else {
+            console.log('equal nanaman?');
+        }
     }
 
-    const result = performCalculation(equationArray[2]);
-    if (equationArray.length != 0) {
-        lineOneText.textContent = equationArray.join(''); // eqn
-        lineTwoText.textContent = result; // result
-    }
-    equationArray = [];
-    equationArray.push(result);
-    pressedKeysArray = [];
     console.log('FIN: ' + equationArray + ' | ' + pressedKeysArray);
 }
 
@@ -78,7 +90,9 @@ export function performCalculation(varB) {
 export function deleteLastChar() {
     if (pressedKeysArray.length == 0) {
         // Get last variable in equationArray
-        if (equationArray.length != 0) {
+        if (equationArray.length == 0) {
+            lineOneText.textContent = '';
+        } else {
             if (!operandsAllowed.includes(equationArray[equationArray.length - 1])) {
                 let lastVar = String(equationArray[equationArray.length - 1]);
                 pressedKeysArray = [...lastVar]; // string to array
