@@ -34,7 +34,6 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0 16px;
-    overflow: hidden;
 }
 
 h1 {

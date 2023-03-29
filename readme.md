@@ -4,19 +4,25 @@ The Odin Project - JS Foundation Final Project
 
 ## Warning! This is a work in progress
 
-WORK IN PROGRESS: VIEW [HERE](https://hello-damiro.github.io/calculator)
+LIVE SITE [HERE](https://hello-damiro.github.io/calculator)
 
-**Day 1:** Prepared environment and initial files. Design and conceptualize calculator on figma.
+**Day 1:** Prepared environment and initial files. Design and conceptualize calculator on figma. Struggled with key press effect with CSS grid. Started with JS and designed pseudo code.
 
-**Day 2:** Struggled with key press effect with CSS grid. Started with JS and designed pseudo code.
+**Day 2:** Struggled with the algorithm. Learned that one should focus on the challenge at hand and do not complicate things.
+
+**Day 3:** Eureka moment on JS. Sequence of code execution is primal. Should learn how to design better procedural pseudos. Deleted unused assets and finalized layout. **March 29 2023**
+
+</br>
+
+![Screenshot](https://github.com/hello-damiro/calculator/blob/main/assets/screenshot.png?raw=true)
 
 </br>
 
 ## Pseudo Code
 
-1. Capture key presses and put it on array `pressedArray`
-2. Process `pressedArray` and reiterate through array and combine integers and seperate it with the operands in between integers
-3. When user press `=`, calculate processed array by applying MDAS
+1. Capture key presses and put it on array `pressedKeysArray`
+2. Process `pressedKeysArray` and reiterate through array and combine integers and seperate it with the operands in between integers, put this into a new array `equationArray`
+3. When user press `=`, calculate variables from `equationArray`
 
 </br>
 

@@ -31,9 +31,12 @@ export function finalizeCalculation() {
 
             const result = performCalculation(equationArray[2]);
             updateLineOne();
-            //lineOneText.textContent = equationArray.join(''); // eqn
-            lineTwoText.textContent = result; // result TODO: limit to character display
-            lineTwoText.textContent = roundOff(result, 12); // result TODO: limit to character display
+
+            let resultArray = [...String(result)];
+            const index = resultArray.indexOf('.');
+            console.log(index);
+
+            lineTwoText.textContent = roundOff(result, 14 - (index + 1)); // result TODO: limit to character display
 
             equationArray = [];
             pressedKeysArray = [];
@@ -121,6 +124,12 @@ export function updateNumberPressed(number) {
         }
     } else {
         pressedKeysArray.push(number);
+        const reArray = pressedKeysArray.join('');
+        pressedKeysArray = [];
+        pressedKeysArray = [...reArray];
+        console.log(pressedKeysArray);
+        // const rearray = pressedKeysArray.join('');
+        // pressedKeysArray.push([...String(rearray)]);
     }
     updateLineTwo();
 }
