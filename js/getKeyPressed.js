@@ -3,7 +3,7 @@ import {
     operandsAllowed,
     updateNumberPressed,
     updateEquation,
-    performCalculation,
+    finalizeCalculation,
     deleteLastChar,
     clearAll,
 } from '/script.js';
@@ -37,7 +37,7 @@ export function getKeyPressed() {
         });
     });
 
-    document.querySelector('.equal').addEventListener('click', performCalculation);
+    document.querySelector('.equal').addEventListener('click', finalizeCalculation);
     document.querySelector('.c').addEventListener('click', deleteLastChar);
     document.querySelector('.ac').addEventListener('click', clearAll);
 
@@ -47,7 +47,7 @@ export function getKeyPressed() {
         const key = event.key; // "a", "1", "Shift", etc.
         if (numbersAllowed.includes(key)) updateNumberPressed(key);
         else if (operandsAllowed.includes(key)) updateEquation(key);
-        else if ((key = '=')) performCalculation();
+        else if ((key = '=')) finalizeCalculation();
         else if ((key = 'Backspace')) deleteLastChar();
         else if ((key = 'Delete')) clearAll();
     });

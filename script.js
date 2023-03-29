@@ -14,17 +14,46 @@ getKeyPressed();
 let lineOneText = document.querySelector('#lcd > h2');
 let lineTwoText = document.querySelector('#lcd > h3');
 
+export function finalizeCalculation() {
+    console.log('yah here?');
+    equationArray.push(pressedKeysArray.join(''));
+    updateLineOne();
+    lineTwoText.textContent = performCalculation();
+    equationArray.splice(0, 3, performCalculation().toString());
+}
+
+export function performCalculation() {
+    let varA = equationArray[0];
+    let varB = equationArray[2];
+    let operand = equationArray[1];
+    let result;
+
+    if (varB == undefined) {
+        varB = pressedKeysArray.join('');
+    }
+
+    if (operand == '+') {
+        result = parseFloat(varA) + parseFloat(varB);
+    } else if (operand == '-') {
+        result = parseFloat(varA) - parseFloat(varB);
+    } else if (operand == '*') {
+        result = parseFloat(varA) * parseFloat(varB);
+    } else if (operand == '/') {
+        result = parseFloat(varA) / parseFloat(varB);
+    }
+    console.log('Calculating: ' + varA + ' ' + operand + ' ' + varB + ' = ' + result);
+    return result;
+}
+
 export function deleteLastChar() {
     if (pressedKeysArray.length == 0) {
         // Get last variable in equationArray
         if (equationArray.length != 0) {
-            if (operandsAllowed.includes(equationArray[equationArray.length - 1])) {
-                equationArray.pop();
-            } else {
+            if (!operandsAllowed.includes(equationArray[equationArray.length - 1])) {
                 pressedKeysArray = [...equationArray[equationArray.length - 1]]; // string to array
                 pressedKeysArray.pop();
-                equationArray.pop();
             }
+            equationArray.pop();
             updateLineOne();
         }
     } else {
@@ -36,25 +65,42 @@ export function deleteLastChar() {
 export function updateEquation(operand) {
     if (pressedKeysArray.length == 0) {
         equationArray.pop();
-        equationArray.push(operand);
     } else {
-        equationArray.push(pressedKeysArray.join(''));
-        equationArray.push(operand);
+        const pressedKeysString = pressedKeysArray.join('');
+        // if (pressedKeysString != '-') {
+        equationArray.push(pressedKeysString);
+        // }
     }
 
+    if (equationArray.length != 0) {
+        if (equationArray.length >= 2) {
+            equationArray.splice(0, 3, performCalculation().toString());
+        }
+        equationArray.push(operand);
+
+        // Reset Display Line two
+        lineTwoText.textContent = '';
+        pressedKeysArray = [];
+    }
     updateLineOne();
-
-    // Reset Display Line two
-    lineTwoText.textContent = '';
-    pressedKeysArray = [];
-}
-
-export function performCalculation() {
-    console.log('performing calculation ...');
+    console.log(equationArray);
 }
 
 export function updateNumberPressed(number) {
-    pressedKeysArray.push(number);
+    if (number == '.') {
+        // Check perieod
+        if (pressedKeysArray.includes('.')) return;
+        pressedKeysArray.push(number);
+    } else if (number == '-') {
+        // Toggle sign
+        if (pressedKeysArray.includes('-')) {
+            pressedKeysArray.splice(0, 1); // remove minus sign
+        } else {
+            pressedKeysArray.splice(0, 0, '-'); // Add minus sign
+        }
+    } else {
+        pressedKeysArray.push(number);
+    }
     updateLineTwo();
 }
 
