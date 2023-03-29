@@ -14,23 +14,14 @@ getKeyPressed();
 let lineOneText = document.querySelector('#lcd > h2');
 let lineTwoText = document.querySelector('#lcd > h3');
 
-export function finalizeCalculation() {
-    console.log('yah here?');
-    equationArray.push(pressedKeysArray.join(''));
-    updateLineOne();
-    lineTwoText.textContent = performCalculation();
-    equationArray.splice(0, 3, performCalculation().toString());
-}
+export function finalizeCalculation() {}
 
-export function performCalculation() {
+export function updateEquation(operand) {}
+
+export function performCalculation(varB) {
     let varA = equationArray[0];
-    let varB = equationArray[2];
     let operand = equationArray[1];
     let result;
-
-    if (varB == undefined) {
-        varB = pressedKeysArray.join('');
-    }
 
     if (operand == '+') {
         result = parseFloat(varA) + parseFloat(varB);
@@ -60,30 +51,6 @@ export function deleteLastChar() {
         pressedKeysArray.pop();
     }
     updateLineTwo();
-}
-
-export function updateEquation(operand) {
-    if (pressedKeysArray.length == 0) {
-        equationArray.pop();
-    } else {
-        const pressedKeysString = pressedKeysArray.join('');
-        // if (pressedKeysString != '-') {
-        equationArray.push(pressedKeysString);
-        // }
-    }
-
-    if (equationArray.length != 0) {
-        if (equationArray.length >= 2) {
-            equationArray.splice(0, 3, performCalculation().toString());
-        }
-        equationArray.push(operand);
-
-        // Reset Display Line two
-        lineTwoText.textContent = '';
-        pressedKeysArray = [];
-    }
-    updateLineOne();
-    console.log(equationArray);
 }
 
 export function updateNumberPressed(number) {
