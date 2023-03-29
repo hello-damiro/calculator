@@ -44,11 +44,11 @@ export function getKeyPressed() {
     // KEYBOARD
     document.addEventListener('keydown', function (event) {
         // TODO: on key press animate GUI
-        const key = event.key; // "a", "1", "Shift", etc.
+        const key = event.key;
         if (numbersAllowed.includes(key)) updateNumberPressed(key);
         else if (operandsAllowed.includes(key)) updateEquation(key);
-        else if ((key = '=')) finalizeCalculation();
-        else if ((key = 'Backspace')) deleteLastChar();
-        else if ((key = 'Delete')) clearAll();
+        else if (key === '=' || key === 'Enter') finalizeCalculation();
+        else if (key === 'Backspace') deleteLastChar();
+        else if (key === 'Delete') clearAll();
     });
 }

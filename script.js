@@ -14,9 +14,48 @@ getKeyPressed();
 let lineOneText = document.querySelector('#lcd > h2');
 let lineTwoText = document.querySelector('#lcd > h3');
 
-export function finalizeCalculation() {}
+export function finalizeCalculation() {
+    if (pressedKeysArray.length == 0) {
+        equationArray.pop();
+    } else {
+        // eqn complete
+        const pressedKeysString = pressedKeysArray.join('');
+        equationArray.push(pressedKeysString);
+    }
 
-export function updateEquation(operand) {}
+    const result = performCalculation(equationArray[2]);
+    if (equationArray.length != 0) {
+        lineOneText.textContent = equationArray.join(''); // eqn
+        lineTwoText.textContent = result; // result
+    }
+    equationArray = [];
+    equationArray.push(result);
+    pressedKeysArray = [];
+    console.log('FIN: ' + equationArray + ' | ' + pressedKeysArray);
+}
+
+export function updateEquation(operand) {
+    if (pressedKeysArray.length == 0) {
+        console.log('yah here?');
+        equationArray.pop();
+    } else {
+        const pressedKeysString = pressedKeysArray.join('');
+        equationArray.push(pressedKeysString);
+    }
+
+    if (equationArray.length != 0) {
+        if (equationArray.length >= 2) {
+            equationArray.splice(0, 3, performCalculation(equationArray[2]));
+        }
+        equationArray.push(operand);
+
+        // Reset Display Line two
+        lineTwoText.textContent = '';
+        pressedKeysArray = [];
+    }
+    updateLineOne();
+    console.log('UEQ: ' + equationArray + ' | ' + pressedKeysArray);
+}
 
 export function performCalculation(varB) {
     let varA = equationArray[0];
@@ -41,7 +80,8 @@ export function deleteLastChar() {
         // Get last variable in equationArray
         if (equationArray.length != 0) {
             if (!operandsAllowed.includes(equationArray[equationArray.length - 1])) {
-                pressedKeysArray = [...equationArray[equationArray.length - 1]]; // string to array
+                let lastVar = String(equationArray[equationArray.length - 1]);
+                pressedKeysArray = [...lastVar]; // string to array
                 pressedKeysArray.pop();
             }
             equationArray.pop();
