@@ -6,7 +6,7 @@ import {
     finalizeCalculation,
     deleteLastChar,
     clearAll,
-} from '/script.js';
+} from '../script.js';
 
 export function getKeyPressed() {
     let keys = document.querySelectorAll('.key');
