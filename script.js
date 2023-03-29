@@ -21,10 +21,9 @@ export function deleteLastChar() {
             if (operandsAllowed.includes(equationArray[equationArray.length - 1])) {
                 equationArray.pop();
             } else {
-                pressedKeysArray = [...equationArray[equationArray.length - 1]];
+                pressedKeysArray = [...equationArray[equationArray.length - 1]]; // string to array
                 pressedKeysArray.pop();
                 equationArray.pop();
-                console.log('yah here? ' + pressedKeysArray);
             }
             updateLineOne();
         }
