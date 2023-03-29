@@ -14,7 +14,25 @@ getKeyPressed();
 let lineOneText = document.querySelector('#lcd > h2');
 let lineTwoText = document.querySelector('#lcd > h3');
 
-export function deleteLastChar() {}
+export function deleteLastChar() {
+    if (pressedKeysArray.length == 0) {
+        // Get last variable in equationArray
+        if (equationArray.length != 0) {
+            if (operandsAllowed.includes(equationArray[equationArray.length - 1])) {
+                equationArray.pop();
+            } else {
+                pressedKeysArray = [...equationArray[equationArray.length - 1]];
+                pressedKeysArray.pop();
+                equationArray.pop();
+                console.log('yah here? ' + pressedKeysArray);
+            }
+            updateLineOne();
+        }
+    } else {
+        pressedKeysArray.pop();
+    }
+    updateLineTwo();
+}
 
 export function updateEquation(operand) {
     if (pressedKeysArray.length == 0) {
@@ -63,7 +81,14 @@ function updateLineTwo() {
     }
 
     // Display number pressed
-    lineTwoText.textContent = lineTwoDisplay.join('');
+    const pressedKeysString = lineTwoDisplay.join('');
+    if (pressedKeysString == '') {
+        lineTwoText.textContent = '0';
+    } else {
+        lineTwoText.textContent = pressedKeysString;
+    }
+
+    lineTwoDisplay = [];
 }
 
 function updateLineOne() {
@@ -81,4 +106,5 @@ function updateLineOne() {
 
     // Display number pressed
     lineOneText.textContent = lineOneDisplay;
+    lineOneDisplay = [];
 }
