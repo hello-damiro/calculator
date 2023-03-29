@@ -45,10 +45,37 @@ export function getKeyPressed() {
     document.addEventListener('keydown', function (event) {
         // TODO: on key press animate GUI
         const key = event.key;
-        if (numbersAllowed.includes(key)) updateNumberPressed(key);
-        else if (operandsAllowed.includes(key)) updateEquation(key);
-        else if (key === '=' || key === 'Enter') finalizeCalculation();
-        else if (key === 'Backspace') deleteLastChar();
-        else if (key === 'Delete') clearAll();
+        if (numbersAllowed.includes(key)) {
+            let btns = document.querySelectorAll('.number');
+            btns.forEach((btn) => {
+                if (btn.getAttribute('value') === key) btn.classList.add('pressed');
+            });
+            updateNumberPressed(key);
+        } else if (operandsAllowed.includes(key)) {
+            let btns = document.querySelectorAll('.operand');
+            btns.forEach((btn) => {
+                if (btn.getAttribute('value') === key) btn.classList.add('pressed');
+            });
+            updateEquation(key);
+        } else if (key === '=' || key === 'Enter') {
+            let btn = document.querySelector('.equal');
+            btn.classList.add('pressed');
+            finalizeCalculation();
+        } else if (key === 'Backspace') {
+            let btn = document.querySelector('.c');
+            btn.classList.add('pressed');
+            deleteLastChar();
+        } else if (key === 'Delete') {
+            let btn = document.querySelector('.ac');
+            btn.classList.add('pressed');
+            clearAll();
+        }
+    });
+
+    document.addEventListener('keyup', function (event) {
+        let keys = document.querySelectorAll('.key');
+        keys.forEach((key) => {
+            key.classList.remove('pressed');
+        });
     });
 }

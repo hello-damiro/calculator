@@ -10,7 +10,7 @@ LIVE SITE [HERE](https://hello-damiro.github.io/calculator)
 
 **Day 2:** Struggled with the algorithm. Learned that one should focus on the challenge at hand and do not complicate things.
 
-**Day 3:** Eureka moment on JS. Sequence of code execution is primal. Should learn how to design better procedural pseudos. Deleted unused assets and finalized layout. **March 29 2023**
+**Day 3:** Eureka moment on JS. Sequence of code execution is primal. Should learn how to design better procedural pseudos. Deleted unused assets and finalized layout. _(March 29 2023)_
 
 </br>
 
