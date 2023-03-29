@@ -34,7 +34,6 @@ export function finalizeCalculation() {
 
             let resultArray = [...String(result)];
             const index = resultArray.indexOf('.');
-            console.log(index);
 
             lineTwoText.textContent = roundOff(result, 14 - (index + 1)); // result TODO: limit to character display
 
@@ -42,16 +41,15 @@ export function finalizeCalculation() {
             pressedKeysArray = [];
             pressedKeysArray.push(result);
         } else {
-            console.log('equal nanaman?');
+            // Do nothing on simultaneous = press
         }
     }
 
-    console.log('FIN: ' + equationArray + ' | ' + pressedKeysArray);
+    // console.log('FIN: ' + equationArray + ' | ' + pressedKeysArray);
 }
 
 export function updateEquation(operand) {
     if (pressedKeysArray.length == 0) {
-        console.log('yah here?');
         equationArray.pop();
     } else {
         const pressedKeysString = pressedKeysArray.join('');
@@ -69,7 +67,7 @@ export function updateEquation(operand) {
         pressedKeysArray = [];
     }
     updateLineOne();
-    console.log('UEQ: ' + equationArray + ' | ' + pressedKeysArray);
+    // console.log('UEQ: ' + equationArray + ' | ' + pressedKeysArray);
 }
 
 export function performCalculation(varB) {
@@ -86,7 +84,7 @@ export function performCalculation(varB) {
     } else if (operand == '/') {
         result = parseFloat(varA) / parseFloat(varB);
     }
-    console.log('Calculating: ' + varA + ' ' + operand + ' ' + varB + ' = ' + result);
+    // console.log('Calculating: ' + varA + ' ' + operand + ' ' + varB + ' = ' + result);
     return result;
 }
 
@@ -127,9 +125,6 @@ export function updateNumberPressed(number) {
         const reArray = pressedKeysArray.join('');
         pressedKeysArray = [];
         pressedKeysArray = [...reArray];
-        console.log(pressedKeysArray);
-        // const rearray = pressedKeysArray.join('');
-        // pressedKeysArray.push([...String(rearray)]);
     }
     updateLineTwo();
 }
