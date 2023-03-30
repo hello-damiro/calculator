@@ -4,11 +4,13 @@
 
 LIVE SITE [HERE](https://hello-damiro.github.io/calculator)
 
+In compliance with the Odin Project JS foundation course. Took roughly 3 days to complete. _Completed March 29 2023._
+
 **Day 1:** Prepared environment and initial files. Design and conceptualize calculator on figma. Struggled with key press effect with CSS grid. Started with JS and designed pseudo code.
 
 **Day 2:** Struggled with the algorithm. Learned that one should focus on the challenge at hand and do not complicate things.
 
-**Day 3:** Eureka moment on JS. Sequence of code execution is primal. Should learn how to design better procedural pseudos. Deleted unused assets and finalized layout. _(March 29 2023)_
+**Day 3:** Eureka moment on JS. Sequence of code execution is primal. Should learn how to design better procedural pseudos. Deleted unused assets and finalized layout.
 
 </br>
 
