@@ -1,18 +1,88 @@
-import { getKeyPressed } from './js/getKeyPressed.js';
+let numbersAllowed = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
+let operandsAllowed = ['*', '/', '+', '-']; // MDAS
 
-export let numbersAllowed = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
-export let operandsAllowed = ['*', '/', '+', '-']; // MDAS
+let lineOneDisplay = []; // 25 chars
+let lineTwoDisplay = []; // 12 chars, 14 incl 1 and period
 
-export let lineOneDisplay = []; // 25 chars
-export let lineTwoDisplay = []; // 12 chars, 14 incl 1 and period
-
-export let pressedKeysArray = [];
-export let equationArray = [];
-
-getKeyPressed();
+let pressedKeysArray = [];
+let equationArray = [];
 
 let lineOneText = document.querySelector('#lcd > h2');
 let lineTwoText = document.querySelector('#lcd > h3');
+
+getKeyPressed();
+
+function getKeyPressed() {
+    let keys = document.querySelectorAll('.key');
+    keys.forEach((key) => {
+        key.addEventListener('mousedown', () => {
+            key.classList.add('pressed');
+        });
+        key.addEventListener('mouseup', () => {
+            key.classList.remove('pressed');
+        });
+        key.addEventListener('mouseleave', () => {
+            key.classList.remove('pressed');
+        });
+    });
+
+    // GUI
+    let numbers = document.querySelectorAll('.number');
+    numbers.forEach((number) => {
+        number.addEventListener('click', () => {
+            updateNumberPressed(number.getAttribute('value'));
+        });
+    });
+
+    let operands = document.querySelectorAll('.operand');
+    operands.forEach((operand) => {
+        operand.addEventListener('click', () => {
+            updateEquation(operand.getAttribute('value'));
+        });
+    });
+
+    document.querySelector('.equal').addEventListener('click', finalizeCalculation);
+    document.querySelector('.c').addEventListener('click', deleteLastChar);
+    document.querySelector('.ac').addEventListener('click', clearAll);
+
+    // KEYBOARD
+    document.addEventListener('keydown', function (event) {
+        // TODO: on key press animate GUI
+        const key = event.key;
+        if (numbersAllowed.includes(key)) {
+            let btns = document.querySelectorAll('.number');
+            btns.forEach((btn) => {
+                if (btn.getAttribute('value') === key) btn.classList.add('pressed');
+            });
+            updateNumberPressed(key);
+        } else if (operandsAllowed.includes(key)) {
+            let btns = document.querySelectorAll('.operand');
+            btns.forEach((btn) => {
+                if (btn.getAttribute('value') === key) btn.classList.add('pressed');
+            });
+            updateEquation(key);
+        } else if (key === '=' || key === 'Enter') {
+            let btn = document.querySelector('.equal');
+            btn.classList.add('pressed');
+            finalizeCalculation();
+        } else if (key === 'Backspace') {
+            let btn = document.querySelector('.c');
+            btn.classList.add('pressed');
+            deleteLastChar();
+        } else if (key === 'Delete') {
+            let btn = document.querySelector('.ac');
+            btn.classList.add('pressed');
+            clearAll();
+        }
+    });
+
+    document.addEventListener('keyup', function (event) {
+        let keys = document.querySelectorAll('.key');
+        keys.forEach((key) => {
+            key.classList.remove('pressed');
+        });
+    });
+}
 
 function roundOff(value, round) {
     return parseInt(value * 10 ** (round + 1)) - parseInt(value * 10 ** round) * 10 > 4
@@ -20,7 +90,7 @@ function roundOff(value, round) {
         : parseFloat(parseInt(value * 10 ** round)) / 10 ** round;
 }
 
-export function finalizeCalculation() {
+function finalizeCalculation() {
     if (pressedKeysArray.length == 0) {
         equationArray.pop();
     } else {
@@ -48,7 +118,7 @@ export function finalizeCalculation() {
     // console.log('FIN: ' + equationArray + ' | ' + pressedKeysArray);
 }
 
-export function updateEquation(operand) {
+function updateEquation(operand) {
     if (pressedKeysArray.length == 0) {
         equationArray.pop();
     } else {
@@ -70,7 +140,7 @@ export function updateEquation(operand) {
     // console.log('UEQ: ' + equationArray + ' | ' + pressedKeysArray);
 }
 
-export function performCalculation(varB) {
+function performCalculation(varB) {
     let varA = equationArray[0];
     let operand = equationArray[1];
     let result;
@@ -88,7 +158,7 @@ export function performCalculation(varB) {
     return result;
 }
 
-export function deleteLastChar() {
+function deleteLastChar() {
     if (pressedKeysArray.length == 0) {
         // Get last variable in equationArray
         if (equationArray.length == 0) {
@@ -108,7 +178,7 @@ export function deleteLastChar() {
     updateLineTwo();
 }
 
-export function updateNumberPressed(number) {
+function updateNumberPressed(number) {
     if (number == '.') {
         // Check perieod
         if (pressedKeysArray.includes('.')) return;
@@ -129,7 +199,7 @@ export function updateNumberPressed(number) {
     updateLineTwo();
 }
 
-export function clearAll() {
+function clearAll() {
     pressedKeysArray = [];
     equationArray = [];
     lineOneDisplay = [];
