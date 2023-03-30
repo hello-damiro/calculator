@@ -1,6 +1,6 @@
 # calculator
 
-The Odin Project - JS Foundation Final Project
+## The Odin Project - JS Foundation Final Project
 
 LIVE SITE [HERE](https://hello-damiro.github.io/calculator)
 
