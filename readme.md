@@ -14,6 +14,8 @@ In compliance with the Odin Project JS foundation course. Took roughly 3 days to
 
 </br>
 
+## Screeshot
+
 ![Screenshot](https://github.com/hello-damiro/calculator/blob/main/assets/screenshot.png?raw=true)
 
 </br>
