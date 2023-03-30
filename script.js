@@ -1,7 +1,7 @@
 let numbersAllowed = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
 let operandsAllowed = ['*', '/', '+', '-']; // MDAS
 
-let lineOneDisplay = []; // 25 chars
+let lineOneDisplay = []; // 22 chars
 let lineTwoDisplay = []; // 12 chars, 14 incl 1 and period
 
 let pressedKeysArray = [];
@@ -232,8 +232,8 @@ function updateLineTwo() {
 }
 
 function updateLineOne() {
-    // Limit LCD display to 25 chars
-    const lcdLineOneLength = 25;
+    // Limit LCD display to 22 chars
+    const lcdLineOneLength = 22;
     const equationString = equationArray.join('');
     if (equationString.length >= lcdLineOneLength) {
         lineOneDisplay = equationString.slice(
